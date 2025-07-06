@@ -1,9 +1,10 @@
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import NextImage from 'next/image';
 import {
   ShieldCheck, Globe, Fingerprint, LocateIcon, Lock, Server,
-  Mail, Image, UserSearch, Network
+  Mail, Image as LucideImage, UserSearch, Network
 } from 'lucide-react';
 
 const tools = [
@@ -16,7 +17,7 @@ const tools = [
   { name: 'ASN Lookup', route: '/tools/asn-lookup', icon: <ShieldCheck /> },
   { name: 'Email Breach Check', route: '/tools/email-breach', icon: <Mail /> },
   { name: 'Social Media Lookup', route: '/tools/socialmedia', icon: <UserSearch /> },
-  { name: 'Reverse Image Search', route: '/tools/reverse-image', icon: <Image /> },
+  { name: 'Reverse Image Search', route: '/tools/reverse-image', icon: <LucideImage /> },
 ];
 
 export default function Home() {
@@ -26,10 +27,12 @@ export default function Home() {
       <main className="relative min-h-screen text-white font-sans px-6 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img
+          <NextImage
             src="/images/hero-croptrust.jpg"
             alt="Background"
-            className="w-full h-full object-cover opacity-60"
+            layout="fill"
+            objectFit="cover"
+            className="opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#265077]/80 to-[#022140]/90" />
         </div>
@@ -56,9 +59,11 @@ export default function Home() {
             </div>
 
             <div className="md:w-1/2">
-              <img
+              <NextImage
                 src="/images/hero-image.jpg"
                 alt="OSINT Toolkit Visual"
+                width={500}
+                height={350}
                 className="rounded-xl shadow-2xl w-full max-w-md mx-auto"
               />
             </div>
@@ -104,7 +109,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-[#2D5F5D] mb-6">About This Project</h2>
             <p className="text-slate-200 leading-relaxed">
               This OSINT toolkit is built using Next.js and Tailwind CSS. Designed with aesthetics and security in mind,
-              it's a reliable asset for digital reconnaissance and cybersecurity learning.
+              it&apos;s a reliable asset for digital reconnaissance and cybersecurity learning.
             </p>
           </section>
 
