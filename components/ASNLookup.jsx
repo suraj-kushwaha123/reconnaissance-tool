@@ -1,3 +1,4 @@
+// components/ASNLookup.jsx
 'use client';
 
 import { useState } from 'react';
@@ -8,7 +9,7 @@ export default function ASNLookup() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
 
-  const handleASNLookup = async () => {
+  const handleLookup = async () => {
     setLoading(true);
     setError('');
     setResult(null);
@@ -21,9 +22,7 @@ export default function ASNLookup() {
       });
 
       const data = await res.json();
-
       if (!res.ok) throw new Error(data.error || 'Something went wrong');
-
       setResult(data);
     } catch (err) {
       setError(err.message);
@@ -33,7 +32,7 @@ export default function ASNLookup() {
   };
 
   return (
-    <div className="mt-10 max-w-2xl mx-auto">
+    <div className="mt-10">
       <h2 className="text-xl font-semibold mb-2">ASN Info Lookup</h2>
       <input
         type="text"
@@ -43,7 +42,7 @@ export default function ASNLookup() {
         onChange={(e) => setInput(e.target.value)}
       />
       <button
-        onClick={handleASNLookup}
+        onClick={handleLookup}
         disabled={loading || !input}
         className="bg-yellow-600 px-5 py-3 rounded text-white disabled:opacity-50"
       >
@@ -53,7 +52,7 @@ export default function ASNLookup() {
       {error && <p className="text-red-500 mt-4">{error}</p>}
 
       {result && (
-        <div className="mt-6 bg-gray-800 p-4 rounded text-sm whitespace-pre-wrap">
+        <div className="mt-6 bg-gray-800 text-white p-4 rounded text-sm whitespace-pre-wrap">
           <pre>{JSON.stringify(result, null, 2)}</pre>
         </div>
       )}

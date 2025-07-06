@@ -1,71 +1,130 @@
-// File: pages/index.js – Fully Styled with Working Feature Links
-
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import {
+  ShieldCheck, Globe, Fingerprint, LocateIcon, Lock, Server,
+  Mail, Image, UserSearch, Network
+} from 'lucide-react';
 
 const tools = [
-  { name: 'Domain Recon', route: '/tools/domain-recon' },
-  { name: 'Subdomain Scan', route: '/tools/subdomain-scan' },
-  { name: 'Reverse IP Lookup', route: '/tools/reverse-ip' },
-  { name: 'HTTP Headers', route: '/tools/http-headers' },
-  { name: 'SSL Certificate', route: '/tools/ssl-certificate' },
-  { name: 'IP Geolocation', route: '/tools/ip-geo' },
-  { name: 'ASN Lookup', route: '/tools/asn-lookup' },
-  { name: 'Email Breach Check', route: '/tools/email-breach' },
-  { name: 'Social Media Lookup', route: '/tools/socialmedia' },
-  { name: 'Reverse Image Search', route: '/tools/reverse-image' },
+  { name: 'Domain Recon', route: '/tools/domain-recon', icon: <Globe /> },
+  { name: 'Subdomain Scan', route: '/tools/subdomain-scan', icon: <Network /> },
+  { name: 'Reverse IP Lookup', route: '/tools/reverse-ip', icon: <Fingerprint /> },
+  { name: 'HTTP Headers', route: '/tools/http-headers', icon: <Server /> },
+  { name: 'SSL Certificate', route: '/tools/ssl-certificate', icon: <Lock /> },
+  { name: 'IP Geolocation', route: '/tools/ip-geo', icon: <LocateIcon /> },
+  { name: 'ASN Lookup', route: '/tools/asn-lookup', icon: <ShieldCheck /> },
+  { name: 'Email Breach Check', route: '/tools/email-breach', icon: <Mail /> },
+  { name: 'Social Media Lookup', route: '/tools/socialmedia', icon: <UserSearch /> },
+  { name: 'Reverse Image Search', route: '/tools/reverse-image', icon: <Image /> },
 ];
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] min-h-screen pt-24 pb-16 px-6 text-white font-sans">
-        <section className="text-center mb-12" id="hero">
-          <h1 className="text-5xl font-extrabold text-cyan-300 drop-shadow-2xl tracking-wide mb-4 animate-fade-in">
-            OSINT Recon Toolkit
-          </h1>
-          <p className="text-lg text-indigo-200 max-w-xl mx-auto animate-fade-in-delay">
-            A modern suite of open-source intelligence tools to empower your reconnaissance workflow.
-          </p>
-        </section>
+      <main className="relative min-h-screen text-white font-sans px-6 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/hero-croptrust.jpg"
+            alt="Background"
+            className="w-full h-full object-cover opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#265077]/80 to-[#022140]/90" />
+        </div>
 
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto" id="features">
-          {tools.map((tool, index) => (
-            <motion.div
-              key={tool.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.4 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <Link
-                href={tool.route}
-                className="group bg-gradient-to-tr from-emerald-700 via-green-800 to-teal-900 hover:from-teal-800 hover:to-emerald-900 border border-lime-400 rounded-xl p-6 shadow-xl hover:shadow-lime-500/40 transition-all duration-300 flex flex-col justify-center items-center text-center"
-              >
-                <span className="text-2xl font-bold text-lime-300 group-hover:text-white transition-colors duration-300 mb-2">
-                  {tool.name}
-                </span>
-                <span className="text-sm text-green-200 group-hover:text-lime-200 transition-colors">
-                  Explore & Use Tool
-                </span>
-              </Link>
-            </motion.div>
-          ))}
-        </section>
+        {/* Content */}
+        <div className="relative z-10">
+          {/* Hero Section */}
+          <section className="max-w-7xl mx-auto pt-28 pb-20 flex flex-col md:flex-row items-center justify-between gap-12">
+            <div className="md:w-1/2">
+              <h1 className="text-5xl font-extrabold text-white leading-tight">
+                OSINT Recon Toolkit
+              </h1>
+              <p className="mt-6 text-lg text-[#99CED3]">
+                Built for cybersecurity specialists and ethical hackers. Discover a new visual and efficient recon experience.
+              </p>
+              <div className="mt-8">
+                <a
+                  href="#tools"
+                  className="bg-[#2D5F5D] hover:bg-[#1E4258] text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition"
+                >
+                  Explore Tools
+                </a>
+              </div>
+            </div>
 
-        <section id="about" className="mt-24 text-center text-indigo-300">
-          <h2 className="text-3xl font-bold mb-2">About</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            This toolkit brings together powerful OSINT capabilities into a clean, accessible interface. Built using Next.js and TailwindCSS.
-          </p>
-        </section>
+            <div className="md:w-1/2">
+              <img
+                src="/images/hero-image.jpg"
+                alt="OSINT Toolkit Visual"
+                className="rounded-xl shadow-2xl w-full max-w-md mx-auto"
+              />
+            </div>
+          </section>
 
-        <section id="contact" className="mt-16 text-center text-indigo-300">
-          <h2 className="text-3xl font-bold mb-2">Contact</h2>
-          <p className="text-gray-400">For feedback or contributions, contact us at osint@yourdomain.com</p>
-        </section>
+          {/* Tools Section */}
+          <section id="tools" className="max-w-6xl mx-auto py-20">
+            <h2 className="text-3xl font-bold text-center text-[#EDB5BF] mb-12">All Tools</h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+              {tools.map((tool, idx) => (
+                <motion.div
+                  key={tool.name}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.07 }}
+                >
+                  <Link
+                    href={tool.route}
+                    className="group rounded-2xl p-6 shadow-xl border border-[#2D5F5D] bg-[#265077]/10 backdrop-blur-md 
+                      hover:bg-[#1E4258]/30 hover:shadow-[#2D5F5D]/40 transition duration-300 ease-in-out
+                      flex items-start gap-5"
+                  >
+                    <div className="text-[#2D5F5D] group-hover:text-[#99CED3] transition duration-200 text-2xl">
+                      {tool.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white group-hover:text-[#99CED3]">
+                        {tool.name}
+                      </h3>
+                      <p className="text-sm text-slate-200 group-hover:text-[#99CED3]/90 transition">
+                        Click to launch
+                      </p>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* About Section */}
+          <section id="about" className="max-w-4xl mx-auto py-20 text-center">
+            <h2 className="text-3xl font-bold text-[#2D5F5D] mb-6">About This Project</h2>
+            <p className="text-slate-200 leading-relaxed">
+              This OSINT toolkit is built using Next.js and Tailwind CSS. Designed with aesthetics and security in mind,
+              it's a reliable asset for digital reconnaissance and cybersecurity learning.
+            </p>
+          </section>
+
+          {/* Disclaimer */}
+          <section className="max-w-3xl mx-auto text-center mt-20 text-slate-300 text-sm px-4">
+            <p className="bg-white/10 border border-white/10 backdrop-blur-md p-4 rounded-lg shadow-sm">
+              ⚠️ <span className="font-semibold text-[#2D5F5D]">Note:</span> Some tools may not work due to API cost or rate limits.
+              This is a <span className="text-[#99CED3]">demo project</span> built for portfolio and educational purposes.
+            </p>
+          </section>
+
+          {/* Footer */}
+          <footer className="border-t border-white/10 py-12 text-center mt-20">
+            <h3 className="text-xl font-bold text-[#2D5F5D] mb-2">Contact</h3>
+            <p className="text-slate-300">
+              Questions or contributions? Reach out at <span className="text-[#86B3D1]">osint@yourdomain.com</span>
+            </p>
+            <p className="text-slate-400 text-sm mt-4">&copy; 2025 OSINT Recon Toolkit</p>
+          </footer>
+        </div>
       </main>
     </>
   );

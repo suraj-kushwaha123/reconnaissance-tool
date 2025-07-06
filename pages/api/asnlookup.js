@@ -1,3 +1,5 @@
+// pages/api/asnlookup.js
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
@@ -13,10 +15,12 @@ export default async function handler(req, res) {
       return res.status(200).json(data);
     }
 
-    // Try reverse AS to IP info if input is an ASN
+    // If input is ASN (e.g., AS15169)
     if (/^AS\d+$/i.test(input)) {
       const asn = input.toUpperCase().replace('AS', '');
-      const res2 = await fetch(`https://stat.ripe.net/data/as-overview/data.json?resource=AS${asn}`);
+      const res2 = await fetch(
+        `https://stat.ripe.net/data/as-overview/data.json?resource=AS${asn}`
+      );
       const data2 = await res2.json();
 
       if (data2 && data2.data) {
